@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Home Page</title>
+
+    <link rel="stylesheet" href="" th:href="@{/css/style.css}" />
+</head>
+
+<body>
+
+
+    <section>
+        <div class="container mt-2">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+
+                    <div class="mycard">
+                        <div th:if="${message}" th:classappend="${message.type}" class="alert alert-primary" role="alert">
+                            <p class="container text-center" th:text="${message.content}"></p>
+                        </div>
+
+
+
+                        <div class="container text-center">
+                            <img src="" style="width:80px" alt="" th:src="@{/image/membership.png}" />
+                        </div>
+
+                        <h1 class="text-center">Register Here</h1>
+
+                        <form action="" th:action="@{/do_register}" method="post" th:object="${user}">
+
+
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">User Name
+                                </label>
+                                <input th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}" th:value="${user.name}" type="text" name="name" class="form-control" id="name" aria-describedby="name"
+                                 />
+                                <div th:each="e:${#fields.errors('name')}" th:text="${e}" id="validationServer03Feedback" class="invalid-feedback">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Email address
+                                </label>
+                                <input th:value="${user.email}" type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" 
+                                th:classappend="${#fields.hasErrors('email') ? 'is-invalid' : '' }">
+                                <div th:each="e:${#fields.errors('email')}" th:text="${e}" id="validationServer03Feedback" class="invalid-feedback">
+                                </div>
+
+                                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Password</label>
+                                <input type="password" name="password" class="form-control" id="exampleInputPassword1" th:classappend="${#fields.hasErrors('password') ? 'is-invalid' : ''}">
+
+                                <div th:each="e:${#fields.errors('password')}" th:text="${e}" id="validationServer03Feedback" class="invalid-feedback">
+                                </div>
+                            </div>
+
+
+                            <div class="form-floating">
+                                <textarea th:value="${user.about}" class="form-control" placeholder="Leave a comment here" id="about" name="about" style="height: 150px"></textarea>
+                                <label for="floatingTextarea2">Enter the text here</label>
+                            </div>
+                            <br />
+
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="agreement" name="agreement">
+                                <label class="form-check-label" for="exampleCheck1">Accepts Terms & Condition</label>
+                            </div>
+
+                            <div class="container text-center ">
+                                <button type="submit" class="btn  bg-secondary  text-white">Submit</button>
+                                <button type="reset" class="btn  bg-warning   text-white">Reset</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

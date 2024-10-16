@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" xmlns:th="htp://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
+
+<head>
+<meta charset="UTF-8" />
+<title>Show Contacts</title>
+
+</head>
+
+
+
+<body>
+
+<section>
+
+		<div class="container text-center">
+			<div class="card mr-3 ml-3">
+
+				<div class="card-body bg-light" th:if="${user}">
+
+					<img alt="" style="width: 200px; height: 200px;"
+						class="my_profile_picture"
+						th:src="@{'/image/' + ${user.imageurl}}" src="profile-photo">
+
+					
+					<div class="container text-center ">
+					<h1 th:text="${user.name}"></h1>
+						<table class="table table-light">
+							<tbody>
+								<tr>
+									<th scope="col">UserId</th>
+									<th scope="col" th:text="'USER'+ ${user.id}"></th>
+
+								</tr>
+
+							</tbody>
+							<tbody>
+								<tr>
+									<th scope="row">Email</th>
+									<td th:text="${user.email}"></td>
+
+								</tr>
+								<tr>
+									<th scope="row">Role</th>
+									<td th:text="${user.role}"></td>
+
+								</tr>
+								
+								<tr>
+									<th scope="row">Acount Status</th>
+									<td th:text="${user.enabled}"></td>
+
+								</tr>
+								
+								<tr>
+									<th scope="row">About</th>
+									<td th:text="${user.about}"></td>
+
+								</tr>
+
+							</tbody>
+
+						</table>
+					</div>
+
+
+					<div class="container">
+
+
+						<a class="btn btn-danger"
+							th:href="@{'/user/profile/'+${user.id}}">Delete</a>
+
+						<form method="post" action="#" class="mt-2"
+							th:action="@{'/user/profile/' + ${user.id}}">
+							<button type="submit" class="btn btn-primary">Update</button>
+						</form>
+						
+					</div>
+
+
+				</div>
+
+
+
+			</div>
+		</div>
+	
+	<script>
+	 
+	 $(document).ready(()=>{
+	 	$(".item").removeClass("active");
+	 	$("#profile-link").addClass("active");
+	 
+	 });
+	 
+	
+	</script>
+	
+	</section>
+
+</body>
+
+</html>
